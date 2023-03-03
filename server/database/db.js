@@ -1,15 +1,16 @@
 import mongoose from "mongoose";
 
 const connection = async (username, password) => {
-  const DB =
-    `mongodb+srv://${username}:${password}@cluster0.wgfkgxm.mongodb.net/veerdb?retryWrites=true&w=majority`;
+  const URL = `mongodb+srv://${username}:${password}@cluster0.ynr1vhb.mongodb.net/veerdb?retryWrites=true&w=majority`;
 
+  
+  mongoose.set('strictQuery', false);
+   
   try {
-    await mongoose.connect(DB, {
+    await mongoose.connect(URL, {
       useUnifiedTopology: true,
       useNewUrlParser: true,
-    });
-    mongoose.set('strictQuery', false);
+    })
     console.log("Database connected Successfully");
   } catch (error) {
     console.log("Error while connecting with the database", error);
